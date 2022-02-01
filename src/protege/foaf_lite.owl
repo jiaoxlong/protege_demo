@@ -1,0 +1,137 @@
+@prefix : <https://www.semanticweb.org/ontologies/foaf_lite#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf_lite: <https://www.semanticweb.org/ontologies/foaf_lite#> .
+@base <https://www.semanticweb.org/ontologies/foaf_lite> .
+
+<https://www.semanticweb.org/ontologies/foaf_lite> rdf:type owl:Ontology ;
+                                                    owl:versionIRI <https://www.semanticweb.org/ontologies/foaf_lite/2022/1> ;
+                                                    dc:description "The RDF schema describing concepts defined in the foaf_lite dataset" ;
+                                                    dc:title "The foaf_lite ontology" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://www.semanticweb.org/ontologies/foaf_lite#homepage
+foaf_lite:homepage rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   rdfs:comment "A homepage for some thing" ;
+                   rdfs:label "homepage" .
+
+
+###  https://www.semanticweb.org/ontologies/foaf_lite#img
+foaf_lite:img rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:domain owl:Thing ;
+              rdfs:comment "An image of some thing" ;
+              rdfs:label "img" .
+
+
+###  https://www.semanticweb.org/ontologies/foaf_lite#mbox
+foaf_lite:mbox rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdfs:domain owl:Thing ;
+               rdfs:comment "A personal mailbox, ie. an email address associated with one person" ;
+               rdfs:label "mbox" .
+
+
+###  https://www.semanticweb.org/ontologies/foaf_lite#member
+foaf_lite:member rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 owl:inverseOf foaf_lite:memberOf ;
+                 rdfs:domain foaf_lite:Organization ;
+                 rdfs:range foaf_lite:Person ;
+                 rdfs:comment "A member of an Organization" ;
+                 rdfs:label "member" .
+
+
+###  https://www.semanticweb.org/ontologies/foaf_lite#memberOf
+foaf_lite:memberOf rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   rdfs:domain foaf_lite:Person ;
+                   rdfs:range foaf_lite:Organization ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty foaf_lite:memberOf ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass foaf_lite:Organization
+                              ] ;
+                   rdfs:comment "A member of an Organization" ;
+                   rdfs:label "memberOf" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://www.semanticweb.org/ontologies/foaf_lite#familyName
+foaf_lite:familyName rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdf:type owl:FunctionalProperty ;
+                     rdfs:domain foaf_lite:Person ;
+                     rdfs:range rdfs:Literal ;
+                     rdfs:comment "The family name of some person." ;
+                     rdfs:label "Family name" .
+
+
+###  https://www.semanticweb.org/ontologies/foaf_lite#givenName
+foaf_lite:givenName rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdf:type owl:FunctionalProperty ;
+                    rdfs:domain foaf_lite:Person ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "The given name of a person" ;
+                    rdfs:label "Given name" .
+
+
+###  https://www.semanticweb.org/ontologies/foaf_lite#name
+foaf_lite:name rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:domain owl:Thing ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "A name for a Thing." ;
+               rdfs:label "name" .
+
+
+###  https://www.semanticweb.org/ontologies/foaf_lite#nick
+foaf_lite:nick rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:comment "A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames)." ;
+               rdfs:label "nickname" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://www.semanticweb.org/ontologies/foaf_lite#Organization
+foaf_lite:Organization rdf:type owl:Class ;
+                       owl:disjointWith foaf_lite:Person ;
+                       rdfs:comment "An organization." ;
+                       rdfs:label "organization" .
+
+
+###  https://www.semanticweb.org/ontologies/foaf_lite#Person
+foaf_lite:Person rdf:type owl:Class ;
+                 rdfs:comment "A person" ;
+                 rdfs:label "person" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

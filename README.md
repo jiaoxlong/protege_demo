@@ -24,7 +24,7 @@ Before diving into it, here are the [tips for creating an ontology](https://prot
 - create classes, object/data/annotation properties, individuals
 - add restrictions*
 - reasoning*
-- [export ontology](src/protege/cronos.owl)
+- [export ontology](src/protege/foaf_lite.owl)
 
 # Further readings
 
