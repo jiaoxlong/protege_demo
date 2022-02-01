@@ -20,10 +20,11 @@ Before diving into it, here are the [tips for creating an ontology](https://prot
 
 ## Protégé demo
 
-- annotate ontology metadata, using [an ontology template](resources/protege/ontology_template.ttl)
+- annotate ontology metadata, using [an ontology template](src/protege/ontology_template.ttl)
 - create classes, object/data/annotation properties, individuals
 - add restrictions*
 - reasoning*
+- [export ontology](src/protege/cronos.owl)
 
 # Further readings
 
