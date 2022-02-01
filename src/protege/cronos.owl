@@ -1,0 +1,137 @@
+@prefix : <https://www.semanticweb.org/ontologies/cronos#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix cronos: <https://www.semanticweb.org/ontologies/cronos#> .
+@base <https://www.semanticweb.org/ontologies/cronos> .
+
+<https://www.semanticweb.org/ontologies/cronos> rdf:type owl:Ontology ;
+                                                 owl:versionIRI <https://www.semanticweb.org/ontologies/cronos/2022/1> ;
+                                                 dc:description "The RDF schema describing concepts defined in the cronos dataset" ;
+                                                 dc:title "The cronos ontology" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://www.semanticweb.org/ontologies/cronos#homepage
+cronos:homepage rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:comment "A homepage for some thing" ;
+                rdfs:label "homepage" .
+
+
+###  https://www.semanticweb.org/ontologies/cronos#img
+cronos:img rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain owl:Thing ;
+           rdfs:comment "An image of some thing" ;
+           rdfs:label "img" .
+
+
+###  https://www.semanticweb.org/ontologies/cronos#mbox
+cronos:mbox rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain owl:Thing ;
+            rdfs:comment "A personal mailbox, ie. an email address associated with one person" ;
+            rdfs:label "mbox" .
+
+
+###  https://www.semanticweb.org/ontologies/cronos#member
+cronos:member rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              owl:inverseOf cronos:memberOf ;
+              rdfs:domain cronos:Organization ;
+              rdfs:range cronos:Person ;
+              rdfs:comment "A member of an Organization" ;
+              rdfs:label "member" .
+
+
+###  https://www.semanticweb.org/ontologies/cronos#memberOf
+cronos:memberOf rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain cronos:Person ;
+                rdfs:range cronos:Organization ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty cronos:memberOf ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass cronos:Organization
+                           ] ;
+                rdfs:comment "A member of an Organization" ;
+                rdfs:label "memberOf" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://www.semanticweb.org/ontologies/cronos#familyName
+cronos:familyName rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain cronos:Person ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "The family name of some person." ;
+                  rdfs:label "Family name" .
+
+
+###  https://www.semanticweb.org/ontologies/cronos#givenName
+cronos:givenName rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdf:type owl:FunctionalProperty ;
+                 rdfs:domain cronos:Person ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "The given name of a person" ;
+                 rdfs:label "Given name" .
+
+
+###  https://www.semanticweb.org/ontologies/cronos#name
+cronos:name rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:domain owl:Thing ;
+            rdfs:range rdfs:Literal ;
+            rdfs:comment "A name for a Thing." ;
+            rdfs:label "name" .
+
+
+###  https://www.semanticweb.org/ontologies/cronos#nick
+cronos:nick rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:comment "A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames)." ;
+            rdfs:label "nickname" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://www.semanticweb.org/ontologies/cronos#Organization
+cronos:Organization rdf:type owl:Class ;
+                    owl:disjointWith cronos:Person ;
+                    rdfs:comment "An organization." ;
+                    rdfs:label "organization" .
+
+
+###  https://www.semanticweb.org/ontologies/cronos#Person
+cronos:Person rdf:type owl:Class ;
+              rdfs:comment "A person" ;
+              rdfs:label "person" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
